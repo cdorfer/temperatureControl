@@ -8,16 +8,20 @@ import logging
 import os
 import subprocess
 
-temp1 = 60
-temp2 = 60
-max_voltage = 3
+##### SETTINGS #####
+temp1 = 70
+temp2 = 40
+max_voltage = 3 #adjust only when you cannot reach set temperature (might burn heating circuit)
+plotting = True
+terminalOutput = False
+### END SETTINGS ###
 
 #generate timezone-aware timestamp
 localtz = timezone('Europe/Zurich')
 now = datetime.now()
 now_tz_aware = localtz.localize(now)
 ts_str = now_tz_aware.strftime("%Y-%m-%d_%H-%M-%S")
-log_fn = ts_str + '_tempcontrol.log'
+log_fn = 'logs/' + ts_str + '_tempcontrol.log'
 
 #set up logging module
 logger = logging.getLogger('TempControl')
@@ -30,7 +34,8 @@ formatter = logging.Formatter('%(asctime)s %(message)s', datefmt='%Y.%m.%d %H:%M
 fh.setFormatter(formatter)
 ch.setFormatter(logging.Formatter('%(message)s'))
 logger.addHandler(fh)
-logger.addHandler(ch)
+if terminalOutput:
+	logger.addHandler(ch)
 
 
 def main():
@@ -44,12 +49,19 @@ def main():
 	temp.setTemperature(temp1, temp2)
 	temp.controlThread.start()
 
-	sleep(2)
-	os.environ["GNUPLOT_FILE"] = log_fn
-	subprocess.call(["gnuplot","plot.gnu"]) 
-	sleep(10)
-	temp.stopControl()
+	try:
+		sleep(2)
+		os.environ["GNUPLOT_FILE"] = log_fn
+		subprocess.call(["gnuplot","plot.gnu"]) 
+	except KeyboardInterrupt:
+		pass
+	finally:
+		temp.stopControl()
 
+
+
+#fix plotting with axes
+#fix auto stop with CTR-C
 
 
 if __name__ == '__main__':
