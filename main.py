@@ -14,6 +14,7 @@ temp2 = 180
 max_voltage = 3 #adjust only when you cannot reach set temperature (might burn heating circuit)
 plotting = True
 terminalOutput = False
+# if one of the devices are not recognized check if udev.rules work and generate /dev/arduino and /dev/lvsupply
 ### END SETTINGS ###
 
 #generate timezone-aware timestamp

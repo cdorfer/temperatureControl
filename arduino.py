@@ -7,7 +7,7 @@ import numpy as np
 
 class Arduino(object):
 
-    def __init__(self, serial_port='/dev/ttyACM0', baud_rate=115200, read_timeout=5):
+    def __init__(self, serial_port='/dev/arduino', baud_rate=115200, read_timeout=5):
         self.conn = serial.Serial(serial_port, baud_rate)
         self.conn.timeout = read_timeout # Timeout for readline()
         time.sleep(0.2)
