@@ -9,8 +9,8 @@ import os
 import subprocess
 
 ##### SETTINGS #####
-temp1 = 70
-temp2 = 40
+temp1 = 180
+temp2 = 180
 max_voltage = 3 #adjust only when you cannot reach set temperature (might burn heating circuit)
 plotting = True
 terminalOutput = False
@@ -58,10 +58,6 @@ def main():
 	finally:
 		temp.stopControl()
 
-
-
-#fix plotting with axes
-#fix auto stop with CTR-C
 
 
 if __name__ == '__main__':

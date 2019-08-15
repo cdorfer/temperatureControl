@@ -19,12 +19,12 @@ class TemperatureControl(object):
         #PID controllers
         self.pid1 = PID()
         self.pid1.sample_time = 0.25 #update every 1s
-        self.pid1.output_limits = (0, 1.5) #Amps on output
+        self.pid1.output_limits = (0, 1.0) #Amps on output
         self.pid1.tunings = (0.1, 0.2, 0.4)
 
         self.pid2 = PID()
         self.pid2.sample_time = 0.25 #update every 1s
-        self.pid2.output_limits = (0, 1.5) #Amps on output
+        self.pid2.output_limits = (0, 1.0) #Amps on output
         self.pid2.tunings = (0.1, 0.2, 0.4)
         
         #thread the temp control process
