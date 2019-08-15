@@ -1,0 +1,2 @@
+#Keithley 1
+SUBSYSTEM=="tty",ATTRS{idVendor}=="2341",ATTRS{idProduct}=="8037",SYMLINK="arduino", MODE="0777",GROUP="tty"
