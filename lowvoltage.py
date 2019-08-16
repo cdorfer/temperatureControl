@@ -73,6 +73,7 @@ class LowVoltage(object):
 
 
 if __name__ == '__main__':
-	lv = LowVoltage()
+	lv = LowVoltage(1)
+	lv.close()
 	#lv.turnChannelOn()
 	#lv.setCurrent(0.2)

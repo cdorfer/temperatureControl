@@ -1,6 +1,6 @@
 from tempcontrol import TemperatureControl
 from arduino import Arduino
-from lowvoltage import LowVoltage
+from lowvoltageLAN import LowVoltage
 from time import sleep
 from datetime import datetime
 from pytz import timezone
@@ -13,7 +13,7 @@ temp1 = 180
 temp2 = 180
 max_voltage = 3 #adjust only when you cannot reach set temperature (might burn heating circuit)
 plotting = True
-terminalOutput = False
+terminalOutput = True
 # if one of the devices are not recognized check if udev.rules work and generate /dev/arduino and /dev/lvsupply
 ### END SETTINGS ###
 
