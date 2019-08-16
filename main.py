@@ -9,9 +9,9 @@ import os
 import subprocess
 
 ##### SETTINGS #####
-temp1 = 60
-temp2 = 60
-max_voltage = 1 #adjust only when you cannot reach set temperature (might burn heating circuit)
+temp1 = 180
+temp2 = 180
+max_voltage = 3 #adjust only when you cannot reach set temperature (will burn heating circuit above 3.2V)
 plotting = True
 terminalOutput = True
 # if one of the devices are not recognized check if udev.rules work and generate /dev/arduino and /dev/lvsupply
