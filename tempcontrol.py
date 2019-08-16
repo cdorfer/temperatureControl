@@ -51,8 +51,10 @@ class TemperatureControl(object):
             set_curr2 = self.pid2(temp2)
             #set it to lv supply and read actual value back
             self.lv.setCurrent(set_curr1, set_curr2)
-            [out_curr1, out_curr2] = self.lv.getCurrent()
-            #p, i, d = self.pid1.components
+            #[out_curr1, out_curr2] = self.lv.getCurrent()
+            out_curr2 = 0
+            out_curr1 = 0
+	    #p, i, d = self.pid1.components
             #print(p, i, d)
             self.logger.info('{} {} {} {}'.format(temp1, out_curr1, temp2, out_curr2))
             if killme.wait(0.005):

@@ -1,0 +1,2 @@
+#Keithley 1
+SUBSYSTEM=="tty",ATTRS{idVendor}=="0711",ATTRS{idProduct}=="0230",SYMLINK="lvsupply", MODE="0777",GROUP="tty"

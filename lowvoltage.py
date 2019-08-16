@@ -13,16 +13,16 @@ class LowVoltage(object):
 		self.max_voltage = mx_vol
 		self.open()
 		self.initialize()
-		self.enabled = False
 
 	def open(self):
-		self.lv = serial.Serial("/dev/lvsupply", 9600)
+		# parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, xonxoff=True
+		self.lv = serial.Serial("/dev/lvsupply",9600)
 		if self.lv.isOpen() == True:
 			sleep(0.2)
-			self.lv.write(b'*RST\r\n')
+			#self.lv.write(b'*RST\r\n')
 			self.lv.write(b'*IDN?\r\n') 
-			val = self.lv.readline().decode()
-			print(' Connected to:\n',val)
+			#val = self.lv.readline().decode()
+			#print(' Connected to:\n',val)
 		else:
 			print("Failed to open connection.")
 
@@ -71,9 +71,11 @@ class LowVoltage(object):
 		print('Connection to low voltage supply closed')
 
 
-
 if __name__ == '__main__':
-	lv = LowVoltage(1)
+	lv = LowVoltage(0.5)
+	lv.turnChannelOn()
+	lv.setCurrent(0.2, 0.3)
+	for i in range(20):
+		lv.getCurrent()
+		sleep(0.5)
 	lv.close()
-	#lv.turnChannelOn()
-	#lv.setCurrent(0.2)

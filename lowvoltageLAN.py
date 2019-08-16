@@ -66,28 +66,38 @@ class LowVoltage(object):
 			print("Failed to set current on LV supply.\nError: {}".format(e))
 
 	def getCurrent(self):
+		curr1 = self.lv.query('I2O?')
+		print(curr1)
+		sleep(0.4)
+		curr2 = self.lv.query('I1O?')
+		print(curr2)
+
+
+		'''
 		curr1 = -1
 		curr2 = -1
 		try:
 			curr1 = self.lv.query('I2O?')
 			curr1 = float(curr1.replace('A', ''))
-			sleep(0.020)
+			sleep(0.040)
 		except:
 			pass
 		
 		try:
 			curr2 = self.lv.query('I1O?')
 			curr2 = float(curr2.replace('A', ''))
-			sleep(0.020)
 		except:
 			pass
 
 		return [curr1, curr2]
+		'''
 
 
 if __name__ == '__main__':
 	lv = LowVoltage(1)
 	lv.turnChannelOn()
 	lv.setCurrent(0.2, 0.3)
-	lv.getCurrent()
+	for i in range(20):
+		lv.getCurrent()
+		sleep(0.5)
 	lv.close()
